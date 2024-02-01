@@ -51,43 +51,43 @@ class AuthRemoteDataSource {
     }
   }
 
-  Future<Either<Failure, bool>> registerStudent(AuthEntity student) async {
-    try {
-      AuthApiModel apiModel = AuthApiModel.fromEntity(student);
-      Response response = await dio.post(
-        ApiEndpoints.register,
-        data: {
-          "fname": apiModel.fname,
-          "lname": apiModel.lname,
-          "image": apiModel.image,
-          "phone": apiModel.phone,
-          "batch": apiModel.batch.batchId,
-          "course": apiModel.course.map((e) => e.courseId).toList(),
-          "username": apiModel.username,
-          "password": apiModel.password,
-        },
+    Future<Either<Failure, bool>> registerStudent(AuthEntity student) async {
+      try {
+        AuthApiModel apiModel = AuthApiModel.fromEntity(student);
+        Response response = await dio.post(
+          ApiEndpoints.register,
+          data: {
+            "fname": apiModel.fname,
+            "lname": apiModel.lname,
+            "image": apiModel.image,
+            "phone": apiModel.phone,
+            "batch": apiModel.batch.batchId,
+            "course": apiModel.course.map((e) => e.courseId).toList(),
+            "username": apiModel.username,
+            "password": apiModel.password,
+          },
 
-        // "course": ["6489a5908dbc6d39719ec19c", "6489a5968dbc6d39719ec19e"]
-      );
-      if (response.statusCode == 200) {
-        return const Right(true);
-      } else {
+          // "course": ["6489a5908dbc6d39719ec19c", "6489a5968dbc6d39719ec19e"]
+        );
+        if (response.statusCode == 200) {
+          return const Right(true);
+        } else {
+          return Left(
+            Failure(
+              error: response.data["message"],
+              statusCode: response.statusCode.toString(),
+            ),
+          );
+        }
+      } on DioException catch (e) {
         return Left(
           Failure(
-            error: response.data["message"],
-            statusCode: response.statusCode.toString(),
+            error: e.error.toString(),
+            statusCode: e.response?.statusCode.toString() ?? '0',
           ),
         );
       }
-    } on DioException catch (e) {
-      return Left(
-        Failure(
-          error: e.error.toString(),
-          statusCode: e.response?.statusCode.toString() ?? '0',
-        ),
-      );
     }
-  }
 
   Future<Either<Failure, bool>> loginStudent(
       String username, String password) async {

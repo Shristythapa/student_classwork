@@ -5,12 +5,12 @@ class ApiEndpoints {
   static const Duration receiveTimeout = Duration(seconds: 1000);
   // For Windows
   // static const String baseUrl = "http://192.168.137.1:3000/api/v1/";
-    static const String baseUrl = "http://192.168.137.1:3000/api/v1/";
+  static const String baseUrl = "http://192.168.137.1:3000/api/v1/";
   // For MAC
   //static const String baseUrl = "http://localhost:3000/api/v1/";
   //static const String baseUrl = "http://192.168.4.4:3000/api/v1/";
 
-   static String usertoken =
+  static String usertoken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTczNjUzYTE1ODM3MGNiZmY2YzljNSIsImlhdCI6MTcwNTQ2OTYwNCwiZXhwIjoxNzA4MDYxNjA0fQ.unNGpnBGAvizxZqar-hPDzWZ_LaMvdObXq5eeeVI3kY";
 
   // ====================== Auth Routes ======================

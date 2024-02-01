@@ -4,7 +4,9 @@ import 'package:student_management_hive_api/config/router/app_route.dart';
 import 'package:student_management_hive_api/config/themes/app_theme.dart';
 
 class App extends ConsumerWidget {
-  const App({super.key});
+  
+  final token;
+  const App({required this.token, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -12,7 +14,7 @@ class App extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Student App',
       theme: AppTheme.getApplicationTheme(isDark: false),
-      initialRoute: AppRoute.homeRoute,
+      initialRoute: AppRoute.loginRoute,
       routes: AppRoute.getApplicationRoute(),
     );
   }
